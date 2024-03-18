@@ -1,0 +1,15 @@
+Spark Theory Questions:
+========================
+1.What is spark ?
+2.What is RDD?
+3.What is DAG and How it is useful in spark code ?
+4.What are the two types of operations performed in spark?
+5.what happens as per spark cluster when we call sc.textFile("file1.csv") for the first time do some visualization wrt spark 4 node cluster?
+6.How rdds are resilient to failures ?
+7.Why rdds are immutable and How immutablity is beneficial for rdds ?
+8.why transformations are lazy ?
+9.What is Spark Context ?
+10.what is the port number where we can see the spark UI after execution ?
+ -> localhost:4040/
+
+11.which action is used in production environment rdd.collect() or rdd.saveAsTextFile(" hdfs folder path where processed data will be stored") and why ?
