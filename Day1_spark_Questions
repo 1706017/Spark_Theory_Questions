@@ -13,3 +13,8 @@ Spark Theory Questions:
  -> localhost:4040/
 
 11.which action is used in production environment rdd.collect() or rdd.saveAsTextFile(" hdfs folder path where processed data will be stored") and why ?
+12.Which is better map+reduceByKey or countByValue?
+
+Sol: map+reduceByKey is a transaformation and a transaformation always return an rdd 
+     on the other hand countByValue is an action and an action always returns a local variable 
+     so we should use action only when the step that we are  going to perform is last step other wise if we still need to perform more action after that step then we should always go for transformation that is map + reduceByKey
