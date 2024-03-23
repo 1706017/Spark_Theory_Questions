@@ -18,3 +18,17 @@ Spark Theory Questions:
 Sol: map+reduceByKey is a transaformation and a transaformation always return an rdd 
      on the other hand countByValue is an action and an action always returns a local variable 
      so we should use action only when the step that we are  going to perform is last step other wise if we still need to perform more action after that step then we should always go for transformation that is map + reduceByKey
+
+13.What is YARN and why it is required ?
+
+14.How to execute the spark programs on spark cluster?
+Sol: we can execute the spark program on spark cluster in two ways
+    a) Interactive mode : by using spark-shell for scala / pyspark for spark in python
+    b) By submitting a job : by using spark-submit 
+
+15.How does spark execute our program on the cluster ?
+
+Sol: Spark follows master slave architecture where each application have one master node/driver node and have bunch of worker node / executors
+
+the main job of driver node is to distribute the task , monitors the executors ,analyse the work etc
+and executors are the machines which are actually executing the spark code 
