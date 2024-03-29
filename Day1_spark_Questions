@@ -32,3 +32,76 @@ Sol: Spark follows master slave architecture where each application have one mas
 
 the main job of driver node is to distribute the task , monitors the executors ,analyse the work etc
 and executors are the machines which are actually executing the spark code 
+
+                                         DATE: 29TH MARCH 2024
+===============================================================================================================
+
+16.What is Big Data ?
+sol: Any data that is characterize by 4 v's Like volume,variety,velocity and veracity is called Big data 
+
+17.Why do we need Big Data?
+sol: We need Big Data to store such huge volume of data and to process such huge volume of data which our traditional systems are not capable to handle 
+
+18.What is the Big Data System Requirements ?
+Sol: 1) Store : Should be able to store such huge volume of data
+     2) Process: Should be capable to process such Huge amount of data 
+     3) Scalable : whenever required could be able to scale up 
+
+19.What are the two ways to build a system ?
+Sol: There are two ways to build a system 
+    a) Monolithic 
+    b) Distributed 
+
+    Monolithic:
+    -----------
+    In Monolithic system it is simply a Large single system with large number of resources 
+    But it has a limitation that after some time it could not be scaled up that is we cannot add more number of resources to this system
+
+    It follows Vertical scaling  
+    
+
+    Distributed:
+    -------------
+    In Distributed system there are many systems with lot of resources but the advantage of distributed over monolithic is that we can add more and more number of resources so it is highly scalable when compared with Monolithic way of desiging system
+
+    It follows Horizontal Scaling 
+
+20.What is HADOOP ?
+sol: Haddop is a framework that is used to solve big data problems related to storage,process
+
+21.What is the Diff between Hadoop 1.0 vs Hadoop 2.0 ?
+Sol: The main point of difference between Hadoop 1.0 and Hadoop 2.0 
+
+     Hadoop 1.0 
+     -----------
+     It has two core components :
+     a) HDFS (Hadoop Distributed File system) used for distributed storage 
+     b) Map Reduce(Used for Distributed processing)
+
+     It has a default block size of 64mb
+     
+     Hadoop 2.0
+     -----------
+     It has three core components:
+     a)HDFS
+     b)Map Reduce
+     c)YARN (YET ANOTHER RESOURCE NEGOTIATER) : resource Manager
+
+     It has a default block size of 128mb
+
+22.What is Haddop Ecosystem ?
+Sol: It consists of multiple technologies like:
+    1) SQOOP -> DATA INGESTION tools helpful for transferring data from RDBMS TO Hadoop (HDFS) vice versa
+    2) Hive -> Data warehouse tool where we can query and get our info by writing sql like query called HQL known as HIVE QUERY LANGUAGE
+    3) OOZIE -> It is a wokflow schdular that helps to schdule the spark jobs and execute them on the schduled time 
+    4) Apache Spark
+    5)HBASE: NOsql database
+
+23. Describe HDFS Architecture?
+Sol: It consists of One master node and multiple data nodes
+
+Suppose we have a file of 500mb so it will get distribued as 128mb into 4 blocks and each block will be by default 128mb size and they will be stored into 4 data nodes 
+
+and about these blocks all the info is stored in the master node which knows which block is in which data node
+
+Also to overcome the failure case of data nodes each block has been replicated for 3 times and each replicated block is stored on differnt data nodes due to which it is resistance to loss of failure 
