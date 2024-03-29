@@ -105,3 +105,33 @@ Suppose we have a file of 500mb so it will get distribued as 128mb into 4 blocks
 and about these blocks all the info is stored in the master node which knows which block is in which data node
 
 Also to overcome the failure case of data nodes each block has been replicated for 3 times and each replicated block is stored on differnt data nodes due to which it is resistance to loss of failure 
+
+24.What is the HDFS Command to copy the file from local to hadfs and copy from hdfs to local ?
+sol: 
+  A) To copy the file from local to hdfs :
+     $hadoop fs -copyFromLocal /user/cloudera/file1.txt /data/
+
+  B) To copy the data file from Hdfs to local :
+
+     $hadoop fs -copyToLocal /data/file1.txt /user/cloudera/input/ 
+
+Q25) What is narrow and wide transformation ?
+
+Sol: In Narrow transformation no shuffling of data is involved
+     example: map(),filter(),flatMap()
+
+     In Wide Transformation shuffling of data is involved 
+     example: reduceByKey()
+
+Q26) What is shuffling means?
+Sol: Shuffling means transfer of data from one machine to other machine
+
+Q27) How does spark stages gets created?
+Sol: Whenever we are calling a wide transformation like reduceByKey a new stage gets created in DAG 
+
+Q28) If we use 3 wide Transformations how many stages gets created in Spark DAG?
+Sol: 4 stages gets created because previous one will be there already and 3 more gets created as we are using three wide transformations
+
+Q29)What is the differnce between reduceByKey() and groupByKey()?
+Sol: Both reduceByKey() and groupByKey() they are wide transformation but the only difference is that in reduceByKey() local aggregation happens due to which it shuffled less data whereas In groupByKey() no local aggregation heppens and due to which it shuffled more data and hence more timetaking and costly operation as shuffling is involve
+
