@@ -242,3 +242,19 @@ Sol: Three read modes are as below :
      a) PERMISSIVE : it will by default set the field value as null if encountered any corrupt data 
      b) MALFORMED : it will ignore the corrupt data 
      c) FAILFAST : it will through an excpetion whenever encountered a corrupt data 
+
+Q40) Write a spark code using data frame to explicity define the data type while reading the data ?
+
+Sol: val Ordersschema = "Order_id int,Order_date Timestamp,Order_customer_id int,Order_status string"
+
+     val ordersDf = spark.read
+          				 .format("csv")
+          				 .option("header",true)
+                   		 .schema(Ordersschema)
+          				 .option("path","/users/cloudera/orders.csv")
+          				 .option("mode",PERMISSIVE)
+           				 .load()
+
+
+     orderDf.show()
+     orderDf.printSchema()
