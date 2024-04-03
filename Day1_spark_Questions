@@ -135,3 +135,92 @@ Sol: 4 stages gets created because previous one will be there already and 3 more
 Q29)What is the differnce between reduceByKey() and groupByKey()?
 Sol: Both reduceByKey() and groupByKey() they are wide transformation but the only difference is that in reduceByKey() local aggregation happens due to which it shuffled less data whereas In groupByKey() no local aggregation heppens and due to which it shuffled more data and hence more timetaking and costly operation as shuffling is involve
 
+Q30) What is cache() and persist() ?
+
+Sol: cache() and persist() both are used to cache the rdd in memory so that again from the starting it does not require to calculate the rdd transformation 
+
+Ultimately which helps in speeding up the appllication 
+
+Both cache() and persist() is equivalent only only difference is that cache() cached the rdd in memory whereas persist() comes with various storage levels
+
+Q31) What are different storage levels of persist() ?
+Sol: Different storage levels are as follows:
+     a) MEMORY_ONLY : In this data is cached in memory only in non serialized format that is in object format which takes more storage
+
+     b) DISK_ONLY : In this data is cached on disk only in serialized format that is in bytes format and it takes less storage
+
+     c) MEMORY_AND_DISK : In this data is cached in memory and if enough memory is not available then it removes from memory and put to disk 
+     
+     Example for syntax:
+     persist(StorageLevel.MEMORY_ONLY)
+Q32) Discuss about the apache spark ecosystem ?
+
+Sol: It consists of below components :
+     a) spark core : that is basically rdd 
+     b) spark SQL : it contains dataframes and dataset api 
+     c) Spark streaming: It basically helps to deal with continiously coming data / real time data 
+     d) MLib : to support machine learning 
+     e) Graphx : for plotting graph and visualization 
+
+Q33) What all transformations and actions you have used till now ?
+
+Sol: Transformations used are below :
+     a) map()
+     b) reduceByKey()
+     c) flatMap()
+     d) filter()
+     e) groupByKey()
+     f) mapValues()
+     g) sortByKey()
+
+     Actions used are below:
+     a)collect()
+     b)saveAsTextFile()
+
+Q34) What is a dataframe in spark ?
+Sol: 
+     Dataframe is conceptually equivalent to table in rdbms but the only difference between table and dataframe is the table is only inside one machine whereas the dataframe is distributed on multiple machine 
+     
+     ->Internally dataframe is using rdd only 
+
+Q35) What is the difference between rdd and df ?
+Sol: Main difference is that in rdd no schema is attached whereas in df schema is attached 
+     
+     -> RDD is called as lower level api 
+     -> Dataframes are called as Higher level structed api
+
+Q36) What is spark Session ?
+Sol: 
+    SparkSession is a unified entry point for a spark application and it is benefical as  insead of having multiple context like sql context,hive context and spark context it is better to have a spark session as it encapuslates all the context 
+ 
+    SparkSession is singleton so for one application only one spark session will be there 
+
+Q37) Write a spark code to read the data from csv file and to infer the schema and treat first row as header from the data and write the code using spark dataframe ?
+
+sol:
+     object Dataframeexample extends App
+     {
+       val sparkConf = new SparkConf()
+
+       sparkConf.set("spark.app.name","myapp1")
+       sparkConf.set("spark.master","local[2]") //here 2 means two 2 cpu cores 
+
+
+       val spark = SparkSession.builder()
+                   .config(sparkConf)
+                   .getOrCreate()
+
+       val OrdersDf = spark.read
+                           .option("inferSchema",true)
+            			   .option("header",true)
+            			   .csv("/user/cloudera/orders.csv")
+
+        OrdersDf.printSchema()
+
+        OrdersDf.repartition(4)
+                .select("order_id","orders_customer_id","status")
+                .where("status = 'Completed'")
+                
+        OrdersDf.show()
+
+     }
