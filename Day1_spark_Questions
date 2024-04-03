@@ -224,3 +224,21 @@ sol:
         OrdersDf.show()
 
      }
+Q38) Write the structure/syntax for spark reader api ?
+
+Sol: val ordersDf= spark.read
+                  		.format("csv"/"json"/"parquet")
+          				.option("header",true)
+          				.option("inferSchema",true)
+          				.option("path","/user/cloudera/orders.csv")
+          				.option("mode","PERMISSIVE")
+          				.load()
+
+     Note: inferSchema is not be used for production environment 
+
+Q39) What are the three read modes for reading data in spark while using spark readers api ?
+
+Sol: Three read modes are as below :
+     a) PERMISSIVE : it will by default set the field value as null if encountered any corrupt data 
+     b) MALFORMED : it will ignore the corrupt data 
+     c) FAILFAST : it will through an excpetion whenever encountered a corrupt data 
